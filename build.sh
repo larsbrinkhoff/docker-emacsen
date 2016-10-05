@@ -1,7 +1,7 @@
 . ./config.sh
 
 if test -d emacs/.git; then
-    (cd emacs && git pull)
+    (cd emacs && git checkout master && git pull)
 else
     git clone $REPO
 fi
