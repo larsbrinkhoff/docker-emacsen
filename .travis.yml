@@ -5,13 +5,15 @@ services:
 cache:
   directories:
     - emacs
+env:
+  - TAG=debian
 script:
   - set -ex
   - lsb_release -ds
-  - docker pull larsbrinkhoff/emacsen:latest
+  - docker pull larsbrinkhoff/emacsen:$TAG || true
   - sh -ex build.sh
-  - docker run -it -v $PWD:/x larsbrinkhoff/emacsen /x/tests.sh
+  - docker run -it -v $PWD:/x larsbrinkhoff/emacsen:$TAG /x/tests.sh
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker push larsbrinkhoff/emacsen:latest
+  - docker push larsbrinkhoff/emacsen:$TAG
 notifications:
   email: lars@nocrew.org

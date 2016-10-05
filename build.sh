@@ -15,13 +15,13 @@ RUN cd /emacs && sh bootstrap.sh $version && make && make install"
 done
 
 cat <<EOF > Dockerfile
-FROM ubuntu
+FROM debian
 
-ENV RDEPS libgnutls30 libncurses5
-ENV BDEPS git gcc make autoconf automake libgnutls-dev libncurses-dev
+ENV RDEPS libgnutls-deb0-28 libncurses5
+ENV BDEPS git gcc make autoconf automake libgnutls28-dev libncurses-dev
 ENV USERNAME root
 
-RUN apt-get -q update && apt-get install -y \$BDEPS \$RDEPS
+RUN apt-get -q update -m && apt-get install -y \$BDEPS \$RDEPS
 COPY emacs /emacs
 $build
 RUN apt-get purge -y \$BDEPS
@@ -31,4 +31,4 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /emacs; exit 0
 EOF
 
-docker build -t larsbrinkhoff/emacsen .
+docker build -t larsbrinkhoff/emacsen:${TAG:-latest} .
