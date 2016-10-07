@@ -1,6 +1,4 @@
-VERSIONS="22.3 23.4 24.5 25.1"
-REPO=git://git.savannah.gnu.org/emacs.git
-#https://github.com/emacs-mirror/emacs
+. ./config.sh
 
 if test -d emacs/.git; then
     (cd emacs && git pull)
