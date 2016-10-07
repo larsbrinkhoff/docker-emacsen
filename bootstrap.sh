@@ -15,7 +15,7 @@ if test \! -f autogen.sh; then
     exit 0
 fi
 
-if grep BZR autogen.sh; then
+if grep BZR autogen.sh && test -f configure; then
     ./configure $OPTS && make bootstrap
     exit 0
 fi

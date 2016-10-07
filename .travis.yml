@@ -6,6 +6,7 @@ cache:
   directories:
     - emacs
 script:
+  - set -ex
   - lsb_release -ds
   - docker pull larsbrinkhoff/emacsen:latest
   - sh -ex build.sh
