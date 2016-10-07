@@ -2,7 +2,7 @@ VERSIONS="22.3 23.4 24.5 25.1"
 REPO=git://git.savannah.gnu.org/emacs.git
 #https://github.com/emacs-mirror/emacs
 
-if test -d emacs; then
+if test -d emacs/.git; then
     (cd emacs && git pull)
 else
     git clone $REPO
@@ -29,8 +29,8 @@ $build
 RUN apt-get purge -y \$BDEPS
 RUN apt-get autoremove -y
 RUN apt-get clean
-RUN rm -rf /emacs /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /emacs; exit 0
 EOF
 
 docker build -t larsbrinkhoff/emacsen .
-#docker push larsbrinkhoff/emacsen:latest

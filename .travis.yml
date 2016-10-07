@@ -1,0 +1,15 @@
+language: c
+sudo: required
+services:
+  - docker
+cache:
+  directories:
+    - emacs
+script:
+  - lsb_release -ds
+  - docker pull larsbrinkhoff/emacsen:latest
+  - sh -ex build.sh
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker push larsbrinkhoff/emacsen:latest
+notifications:
+  email: lars@nocrew.org
