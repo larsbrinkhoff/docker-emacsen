@@ -12,3 +12,7 @@ These are the binaries provided:
 - /usr/local/emacs-23.4/bin/emacs
 - /usr/local/emacs-24.5/bin/emacs
 - /usr/local/emacs-25.1/bin/emacs
+
+Among other things, it can be used to test Emacs packages.  For an
+example, see how `forth-mode` is tested in [Wercker](http://wercker.com):
+https://github.com/larsbrinkhoff/forth-mode/blob/master/wercker.yml
