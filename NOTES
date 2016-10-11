@@ -1,0 +1,11 @@
+Get emacs-19.34b tarball.
+
+Edit src/s/gnu-linux.h
+//#define BSD_PGRPS
+//#define setpgrp(pid,pgid) setpgid((pid),(pgid))
+
+CPPFLAGS=-P ./configure i386-pc-linux-gnu
+
+make CC='gcc -m32'
+
+Crash in "temacs -batch -l loadup dump".
