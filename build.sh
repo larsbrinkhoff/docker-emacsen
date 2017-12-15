@@ -31,4 +31,5 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /emacs; exit 0
 EOF
 
+echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 docker build -t larsbrinkhoff/emacsen .
