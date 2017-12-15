@@ -8,8 +8,10 @@ fi
 
 build=""
 for version in $VERSIONS; do
+    rev=emacs-$version
+    test $version = snapshot && rev=master
     build="$build
-RUN cd /emacs && git checkout emacs-$version && git clean -xfd
+RUN cd /emacs && git checkout $rev && git clean -xfd
 COPY bootstrap.sh /emacs
 RUN cd /emacs && sh bootstrap.sh $version && make && make install"
 done
